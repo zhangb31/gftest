@@ -80,4 +80,19 @@
 
 
 ####bug修复
-* 上线后由用户提报的bug，直接基于master分支创建issue(hotfix)分支。解决后合并到master和develop分支，并移除issue分支
+
+* 上线后由用户提报的bug，直接基于master分支创建issue(hotfix)分支。
+
+		$>git checkout -b issue-#001 master
+
+* 解决后合并到master和develop分支，并移除issue分支
+
+		$>git checkout master
+		
+		$>git merge issue-#001
+
+		$>git push
+		
+###gitflow流程
+		
+![image](https://github.com/zhangb31/gftest/blob/master/img/git-flow-main.png?raw=true)
