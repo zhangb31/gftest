@@ -43,7 +43,7 @@
 		
 		$>git checkout develop
 		
-		$>git merger feature-*
+		$>git merge feature-*
 		
 		$>git push origin develop
 		
@@ -57,7 +57,27 @@
 
 * 准备发版，基于develop创建release分支。该版本是功能冻结的，任何不在develop分支中的新功能都推到下个发布循环中。
 
+		$>git checkout -b release-0.1 develop
+
 * 发版成功后，合并到master和develop分支中，并删除release分支。master分支创建tag便于追踪。
+
+		$>git checkout master
+		
+		$>git merge release-0.1
+		
+		$>git push origin master
+		
+		$>git checkout develop
+		
+		$>git merge release-0.1
+		
+		$>git push origin develop
+		
+		#合并到master后，打tag
+		$>git tag -a 0.1 -m "Initial public release" master
+		
+		$>git push --tags
+
 
 ####bug修复
 * 上线后由用户提报的bug，直接基于master分支创建issue(hotfix)分支。解决后合并到master和develop分支，并移除issue分支
